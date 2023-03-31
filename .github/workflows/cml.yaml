@@ -35,7 +35,8 @@ jobs:
           #vl2png vega.json -s 1.5 > confusion_matrix.png
           #echo "![](./confusion_matrix.png)" >> report.md
 
-
+          echo "![](./confusion_matrix.png)" >> report.md
+          cml comment create report.md
          
 
           cml comment create report.md
