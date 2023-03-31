@@ -1,3 +1,4 @@
+setuptools
 wget
 scikit-learn
 pandas
