@@ -14,5 +14,8 @@ stages:
     outs:
     - confusion_matrix.png
     metrics:
-    -  metrics.json:
-          cache: false
+    - metrics.json:
+         cache: false
+    plots:
+    - loss.csv:
+         cache: false
