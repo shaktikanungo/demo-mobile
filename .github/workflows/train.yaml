@@ -7,7 +7,9 @@ jobs:
   
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4       
+      - uses: actions/setup-python@v4   
+        with:
+          python-version: 3.9
       - uses: iterative/setup-cml@v1
       - name: Train model
         env:
