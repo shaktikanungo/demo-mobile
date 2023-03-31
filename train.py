@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.preprocessing import OneHotEncoder, StandardScaler 
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_auc_score, confusion_matrix, accuracy_score
+from sklearn.metrics import ConfusionMatrixDisplay
+from sklearn.metrics import roc_auc_score, confusion_matrix, accuracy_score,f1_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
@@ -39,16 +40,15 @@ clf.fit(X_train,y_train)
 
 
 #print accuracy to metrics.txt
-acc = clf.score(X_test, y_test)
-print(acc)
-with open("metrics.json", 'w') as outfile:
-        json.dump({ "accuracy": acc}, outfile)
 
+acc = clf.score(X_test, y_test)
+
+macro_averaged_f1score = f1_score(y_test,clf.predict(X_test), average = 'macro')
+with open("metrics.json", 'w') as outfile:
+        json.dump({ "accuracy": acc , "f1_score_macro" :macro_averaged_f1score}, outfile)
 #plot a confusion matrix
 
-predictions = clf.predict(X_test)
-cm = confusion_matrix(y_test, predictions, labels=clf.classes_)
-disp = ConfusionMatrixDisplay(confusion_matrix=cm,
-                          display_labels=clf.classes_)
-plt.tight_layout()
+disp = ConfusionMatrixDisplay.from_estimator(
+    clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
+)
 plt.savefig("confusion_matrix.png")

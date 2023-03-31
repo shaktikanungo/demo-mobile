@@ -1,0 +1,31 @@
+schema: '2.0'
+stages:
+  prepare_data:
+    cmd: python prepare_data.py
+    deps:
+    - path: data/raw.csv
+      md5: e8c4560161dc3c8571b5b2db25be3294
+      size: 122403
+    - path: prepare_data.py
+      md5: 048dd015043c4fdc07084602e238f79b
+      size: 231
+    outs:
+    - path: mobile_data.csv
+      md5: f8f98c47d193aa7754964c5e95bd32fc
+      size: 64902
+  train:
+    cmd: python train.py
+    deps:
+    - path: mobile_data.csv
+      md5: f8f98c47d193aa7754964c5e95bd32fc
+      size: 64902
+    - path: train.py
+      md5: 936b5fe597612f1cd7a8456d17c3d91e
+      size: 1591
+    outs:
+    - path: confusion_matrix.png
+      md5: b131ee665236cf3948b0a6c6f19d30e6
+      size: 22436
+    - path: metrics.json
+      md5: e5b7fab4b67fcb7c5ce34567cb7ee973
+      size: 56

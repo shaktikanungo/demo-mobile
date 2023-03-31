@@ -1,0 +1,18 @@
+stages:
+  prepare_data:
+    cmd: python prepare_data.py
+    deps:
+    - prepare_data.py
+    - data/raw.csv
+    outs:
+    - mobile_data.csv
+  train:
+    cmd: python train.py
+    deps:
+    - train.py
+    - mobile_data.csv
+    outs:
+    - confusion_matrix.png
+    metrics:
+    -  metrics.json:
+          cache: false
