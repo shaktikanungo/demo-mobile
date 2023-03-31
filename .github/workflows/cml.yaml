@@ -29,14 +29,14 @@ jobs:
           dvc metrics diff main --show-md >> report.md
           
           #Publish confusion matrix diff
-          echo "## Plots" >> report.md
-          echo "### Class confusions" >> report.md
-          dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-vega main > vega.json
-          vl2png vega.json -s 1.5 > confusion_matrix.png
-          echo "![](./confusion_matrix.png)" >> report.md
-
+          #echo "## Plots" >> report.md
+          #echo "### Class confusions" >> report.md
+          #dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-vega main > vega.json
+          #vl2png vega.json -s 1.5 > confusion_matrix.png
           #echo "![](./confusion_matrix.png)" >> report.md
-          #cml comment create report.md
+
+          echo "![](./confusion_matrix.png)" >> report.md
+          cml comment create report.md
          
 
-          cml comment create report.md
+        
