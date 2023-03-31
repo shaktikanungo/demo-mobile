@@ -17,5 +17,9 @@ stages:
     - metrics.json:
          cache: false
     plots:
-    - loss.csv:
-         cache: false
+      confusion:
+        x: 
+          dir/actual.csv: actual
+        y:
+          dir/predicted.csv: predicted
+        template: confusion
